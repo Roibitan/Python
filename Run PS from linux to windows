@@ -1,0 +1,30 @@
+
+
+#!/usr/bin/python3
+
+
+import winrm
+import subprocess
+
+
+
+
+
+
+
+
+
+
+domain = r'XXXXXX'
+user = r'XXXXX'
+password = 'XXXXXX'
+host = 'full_machina_name'
+ps_script = """ wmic os get lastbootuptime """
+
+
+
+
+session = winrm.Session(host, auth=('{}@{}'.format(user,domain), password), transport='ntlm')
+result = session.run_ps(ps_script)
+#result = session.run_ps(r'C:\scripts\Lastboot.ps1')
+print(result)
