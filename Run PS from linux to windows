@@ -9,10 +9,10 @@ import winrm
 
 
 
-domain = r'cellcom_nt'
-user = r'btssrv'
-password = 'DoNoRe129'
-host = 'bt10gen1.dev.corp.cellcom.co.il'
+domain = r'XXXX'
+user = r'XXXXXX'
+password = 'XXXXX'
+host = 'XXXXX.dev.corp.XXXXX.co.il'
 ps_script = """ Get-WmiObject -Class Win32_OperatingSystem |  Select-Object -ExpandProperty LastBootupTime """
 
 
