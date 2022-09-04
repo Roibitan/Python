@@ -3,23 +3,17 @@
 #!/usr/bin/python3
 
 
+
 import winrm
-import subprocess
 
 
 
 
-
-
-
-
-
-
-domain = r'XXXXXX'
-user = r'XXXXX'
-password = 'XXXXXX'
-host = 'full_machina_name'
-ps_script = """ wmic os get lastbootuptime """
+domain = r'cellcom_nt'
+user = r'btssrv'
+password = 'DoNoRe129'
+host = 'bt10gen1.dev.corp.cellcom.co.il'
+ps_script = """ Get-WmiObject -Class Win32_OperatingSystem |  Select-Object -ExpandProperty LastBootupTime """
 
 
 
@@ -27,4 +21,4 @@ ps_script = """ wmic os get lastbootuptime """
 session = winrm.Session(host, auth=('{}@{}'.format(user,domain), password), transport='ntlm')
 result = session.run_ps(ps_script)
 #result = session.run_ps(r'C:\scripts\Lastboot.ps1')
-print(result)
+print(result.std_out)
