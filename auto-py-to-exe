@@ -1,0 +1,5 @@
+###################################
+## How to install auto-py-to-exe ##
+###################################
+open cmd and run the command: "pip install auto-py-to-exe"
+to open the auto-py-to-exe open cmd again and run the command "auto-py-to-exe"
