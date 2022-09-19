@@ -9,6 +9,9 @@ from datetime import date
 import os
 import subprocess
 
+
+
+
 my_dict = {
     "eaiws1": {"VAL": "", 'Address': "eaiws1.corp.co.il", "port": 80},
     "eaiws2": {"VAL": "", 'Address': "eaiws2.corp.co.il", "port": 80},
@@ -21,15 +24,6 @@ my_dict = {
     "bwprd03": {"VAL": "", 'Address': "bwprd03.corp.co.il", "port": 50000},
 }
 
-# def main():
-#     click_me()
-
-# def get_me(url):
-#     user_from_input = ename.get()
-#     username_from_input = eusername.get()
-#     email_from_input = eemail.get()
-#     permissions_from_input = epermission.get()
-#     Create_User(user_from_input, username_from_input, email_from_input, permissions_from_input, url)
 
 def MyUrl():
     for key, value in my_dict.items():
@@ -41,18 +35,17 @@ def MyUrl():
             location = (BURL, pport)
             result_of_check = a_socket.connect_ex(location)
             if result_of_check == 0:
-                answeropen = (key, "Port is open")
-                myLablel = Label(root, text=answeropen)
+                answer_open = (key, "Port is open")
+                myLablel = Label(root, text=answer_open)
                 myLablel.pack()
                 #print(key, "Port is open")
             else:
-                answerclose = (key, "Port is not open")
-                myLablel = Label(root, text=answerclose)
+                answer_close = (key, "Port is not open")
+                myLablel = Label(root, text=answer_close)
                 myLablel.pack()
                 #print(key, "Port is not open")
         else:
             continue
-
 
 def on_configure(event):
     # update scrollregion after starting 'mainloop'
