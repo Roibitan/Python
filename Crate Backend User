@@ -7,26 +7,26 @@ from time import sleep
 from selenium.webdriver.support.ui import Select
 
 my_dict = {
-    "MT-UAT": {"VAL": "", 'URL': "https://backend.qa.gameserver1-mt.com"}, "MT-PROD": {"VAL": "", 'URL': "https://backend.pre-uat.gameserver1-mt.com"},
-    "MI-UAT": {"VAL": "", 'URL': "https://backend.uat.michiganlottery.com"}, "MI-PROD": {"VAL": "", 'URL': "https://backend.michiganlottery.com"},
-    "VAL-UAT": {"VAL": "", 'URL': "https://backend.uat.valottery.com"}, "VAL-PROD": {"VAL": "", 'URL': "https://backend.uat.valottery.com"},
-    "Sazka-UAT": {"VAL": "", 'URL': "https://backend.uat.sazka.cz"}, "Sazka-PROD": {"VAL": "", 'URL': "https://backend.sazka.cz"},
-    "NHL-UAT": {"VAL": "", 'URL': "http://backend.uat.nhlottery.com"}, "NHL-PROD": {"VAL": "", 'URL': "https://backend.nhlottery.com"},
-    "NCEL-UAT": {"VAL": "", 'URL': "https://backend.uat.npi.nclottery.com"}, "NCEL-PROD": {"VAL": "", 'URL': "https://backend.npi.nclottery.com"},
-    "AGLC-UAT": {"VAL": "", 'URL': "https://backend.uat.playalberta.ca"}, "AGLC-PROD": {"VAL": "", 'URL': "https://backend.playalberta.ca"},
-    "NG-LOT-UAT": {"VAL": "", 'URL': "https://backend.uat.nglotteries-ir.com"}, "NG-LOT-PROD": {"VAL": "", 'URL': "https://backend.nglotteries-ir.com"},
-    "Croatia-UAT": {"VAL": "", 'URL': "https://backend-uat.lutrija.hr"}, "Croatia-PROD": {"VAL": "", 'URL': "ttps://backend.lutrija.hr"},
-    "WH-NJ-GPT": {"VAL": "", 'URL': "https://backend.neo.nj.us.gpt.williamhill-test.com"}, "WH-NJ-Cert": {"VAL": "", 'URL': "https://backend.neo.nj.us.usc.williamhill-test.com"}, "WH-NJ-PROD": {"VAL": "", 'URL': "https://backend.nj.us.williamhill.com"},
-    "WH-IN-GPT": {"VAL": "", 'URL': "https://backend.neo.in.us.gpt.williamhill-test.com"}, "WH-IN-Cert": {"VAL": "", 'URL': "https://backend.in.us.usc.williamhill-test.com"}, "WH-IN-PROD": {"VAL": "", 'URL': "https://backend.in.us.williamhill.com"},
-    "WH-IA-GPT": {"VAL": "", 'URL': "https://backend.neo.ia.us.gpt.williamhill-test.com"}, "WH-IA-Cert": {"VAL": "", 'URL': "https://backend.neo.ia.us.usc.williamhill-test.com"}, "WH-IA-PROD": {"VAL": "", 'URL': "https://backend.neo.ia.us.williamhill.com"},
-    "WH-IL-GPT": {"VAL": "", 'URL': "https://backend.neo.il.us.gpt.williamhill-test.com"}, "WH-IL-Cert": {"VAL": "", 'URL': "https://backend.neo.il.us.usc.williamhill-test.com"}, "WH-IL-PROD": {"VAL": "", 'URL': "hypps://"},
-    "WH-WV-GPT": {"VAL": "", 'URL': "https://backend.wv.us.gpt.williamhill-test.com"}, "WH-WV-Cert": {"VAL": "", 'URL': "https://backend.wv.us.usc.williamhill-test.com"}, "WH-WV-PROD": {"VAL": "", 'URL': "https://backend.wv.us.williamhill.com"},
-    "WH-CO-GPT": {"VAL": "", 'URL': "https://backend.neo.co.us.gpt.williamhill-test.com"}, "WH-CO-Cert": {"VAL": "", 'URL': "https://backend.neo.co.us.usc.williamhill-test.com"}, "WH-CO-PROD": {"VAL": "", 'URL': "https://backend.neo.co.us.williamhill.com"},
-    "WH-MI-GPT": {"VAL": "", 'URL': "https://backend.neo.mi.us.gpt.williamhill-test.com"}, "WH-MI-Cert": {"VAL": "", 'URL': "https://backend.neo.mi.us.usc.williamhill-test.com"}, "WH-MI-PROD": {"VAL": "", 'URL': "https://backend.neo.mi.us.williamhill.com"},
-    "WH-TN-GPT": {"VAL": "", 'URL': "https://backend.neo.tn.us.gpt.williamhill-test.com"}, "WH-TN-Cert": {"VAL": "", 'URL': "https://backend.neo.tn.us.usc.williamhill-test.com"}, "WH-TN-PROD": {"VAL": "", 'URL': "https://backend.neo.tn.us.williamhill.com"},
-    "WH-VA-GPT": {"VAL": "", 'URL': "https://backend.neo.va.us.gpt.williamhill-test.com"}, "WH-VA-Cert": {"VAL": "", 'URL': "https://backend.neo.va.us.usc.williamhill-test.com"}, "WH-VA-PROD": {"VAL": "", 'URL': "https://backend.neo.va.us.williamhill.com"},
-    "WH-AZ-GPT": {"VAL": "", 'URL': "https://backend.neo.az.us.gpt.williamhill-test.com"}, "WH-AZ-Cert": {"VAL": "", 'URL': "https://backend.neo.az.us.usc.williamhill-test.com"}, "WH-AZ-PROD": {"VAL": "", 'URL': "https://backend.neo.az.us.williamhill.com"},
-    "WH-LA-GPT": {"VAL": "", 'URL': "https://backend.neo.la.us.gpt.williamhill-test.com"}, "WH-LA-Cert": {"VAL": "", 'URL': "https://backend.neo.la.us.usc.williamhill-test.com"}, "WH-LA-PROD": {"VAL": "", 'URL': "https://backend.neo.la.us.williamhill.com"}
+    "MT-UAT": {"VAL": "", 'URL': "https://backend.XXXXXX.XXXXXX.com"}, "MT-PROD": {"VAL": "", 'URL': "https://backend.pre-uat.XXXXXX-mt.com"},
+    "MI-UAT": {"VAL": "", 'URL': "https://backend.XXXXXX.XXXXXX.com"}, "MI-PROD": {"VAL": "", 'URL': "https://backend.XXXXXX.com"},
+    "VAL-UAT": {"VAL": "", 'URL': "https://backend.XXXXXX.XXXXXX.com"}, "VAL-PROD": {"VAL": "", 'URL': "https://backend.uat.XXXXXX.com"},
+    "Sazka-UAT": {"VAL": "", 'URL': "https://backend.XXXXXX.XXXXXX.cz"}, "Sazka-PROD": {"VAL": "", 'URL': "https://backend.XXXXXX.cz"},
+    "NHL-UAT": {"VAL": "", 'URL': "http://backend.XXXXXX.XXXXXX.com"}, "NHL-PROD": {"VAL": "", 'URL': "https://backend.XXXXXX.com"},
+    "NCEL-UAT": {"VAL": "", 'URL': "https://backend.XXXXXX.XXXXXX.XXXXXX.com"}, "NCEL-PROD": {"VAL": "", 'URL': "https://backend.npi.XXXXXX.com"},
+    "AGLC-UAT": {"VAL": "", 'URL': "https://backend.XXXXXX.XXXXXX.ca"}, "AGLC-PROD": {"VAL": "", 'URL': "https://backend.XXXXXX.ca"},
+    "NG-LOT-UAT": {"VAL": "", 'URL': "https://backend.XXXXXX.XXXXXX-ir.com"}, "NG-LOT-PROD": {"VAL": "", 'URL': "https://XXXXXX.XXXXXX-ir.com"},
+    "Croatia-UAT": {"VAL": "", 'URL': "https://backend-XXXXXX.XXXXXX.hr"}, "Croatia-PROD": {"VAL": "", 'URL': "ttps://XXXXXX.XXXXXX.hr"},
+    "WH-NJ-GPT": {"VAL": "", 'URL': "https://backend.XXXXXX.nj.us.gpt.XXXXXX-test.com"}, "WH-NJ-Cert": {"VAL": "", 'URL': "https://backend.XXXXXX.nj.XXXXXX.usc.XXXXXX-test.com"}, "WH-NJ-PROD": {"VAL": "", 'URL': "https://backend.nj.XXXXXX.XXXXXX.com"},
+    "WH-IN-GPT": {"VAL": "", 'URL': "https://backend.XXXXXX.in.us.gpt.XXXXXX-test.com"}, "WH-IN-Cert": {"VAL": "", 'URL': "https://backend.in.XXXXXX.usc.XXXXXX-test.com"}, "WH-IN-PROD": {"VAL": "", 'URL': "https://backend.in.XXXXXX.XXXXXX.com"},
+    "WH-IA-GPT": {"VAL": "", 'URL': "https://backend.XXXXXX.ia.us.gpt.XXXXXX-test.com"}, "WH-IA-Cert": {"VAL": "", 'URL': "https://backend.XXXXXX.XXXXXX.us.usc.XXXXXX-test.com"}, "WH-IA-PROD": {"VAL": "", 'URL': "https://backend.XXXXXX.ia.XXXXXX.XXXXXX.com"},
+    "WH-IL-GPT": {"VAL": "", 'URL': "https://backend.XXXXXX.il.us.gpt.XXXXXX-test.com"}, "WH-IL-Cert": {"VAL": "", 'URL': "https://backend.XXXXXX.il.us.usc.XXXXXX-test.com"}, "WH-IL-PROD": {"VAL": "", 'URL': "hypps://"},
+    "WH-WV-GPT": {"VAL": "", 'URL': "https://backend.wv.us.gpt.XXXXXX-test.com"}, "WH-WV-Cert": {"VAL": "", 'URL': "https://backend.wv.XXXXXX.usc.XXXXXX-test.com"}, "WH-WV-PROD": {"VAL": "", 'URL': "https://backend.wv.us.williamhill.com"},
+    "WH-CO-GPT": {"VAL": "", 'URL': "https://backend.XXXXXX.co.us.XXXXXX.XXXXXX-test.com"}, "WH-CO-Cert": {"VAL": "", 'URL': "https://backend.XXXXXX.co.XXXXXX.usc.XXXXXX-test.com"}, "WH-CO-PROD": {"VAL": "", 'URL': "https://backend.XXXXXX.co.us.XXXXXX.com"},
+    "WH-MI-GPT": {"VAL": "", 'URL': "https://backend.XXXXXX.mi.us.XXXXXX.XXXXXX-test.com"}, "WH-MI-Cert": {"VAL": "", 'URL': "https://backend.XXXXXX.mi.XXXXXX.usc.XXXXXX-test.com"}, "WH-MI-PROD": {"VAL": "", 'URL': "https://backend.XXXXXX.mi.us.XXXXXX.com"},
+    "WH-TN-GPT": {"VAL": "", 'URL': "https://backend.XXXXXX.tn.us.XXXXXX.XXXXXX-test.com"}, "WH-TN-Cert": {"VAL": "", 'URL': "https://backend.XXXXXX.tn.XXXXXX.usc.XXXXXX-test.com"}, "WH-TN-PROD": {"VAL": "", 'URL': "https://backend.XXXXXX.tn.us.XXXXXX.com"},
+    "WH-VA-GPT": {"VAL": "", 'URL': "https://backend.XXXXXX.va.us.XXXXXX.XXXXXX-test.com"}, "WH-VA-Cert": {"VAL": "", 'URL': "https://backend.XXXXXX.va.XXXXXX.usc.XXXXXX-test.com"}, "WH-VA-PROD": {"VAL": "", 'URL': "https://backend.XXXXXX.va.us.XXXXXX.com"},
+    "WH-AZ-GPT": {"VAL": "", 'URL': "https://backend.XXXXXX.az.us.XXXXXX.XXXXXX-test.com"}, "WH-AZ-Cert": {"VAL": "", 'URL': "https://backend.XXXXXX.az.XXXXXX.usc.XXXXXX-test.com"}, "WH-AZ-PROD": {"VAL": "", 'URL': "https://backend.XXXXXX.az.us.XXXXXX.com"},
+    "WH-LA-GPT": {"VAL": "", 'URL': "https://backend.XXXXXX.la.us.XXXXXX.XXXXXX-test.com"}, "WH-LA-Cert": {"VAL": "", 'URL': "https://backend.XXXXXX.la.XXXXXX.usc.XXXXXX-test.com"}, "WH-LA-PROD": {"VAL": "", 'URL': "https://backend.XXXXXX.la.us.XXXXXX.com"}
 }
 
 def main():
@@ -60,8 +60,8 @@ def Create_User(user_wanted, username_wanted, email_wanted, permissions_wanted, 
     driver.set_window_size(1920, 1080)
     try:
         driver.get(url + '/Operators/OperatorsPermissions.aspx')
-        driver.find_element_by_id('txtUsername').send_keys("shakedg")
-        driver.find_element_by_id('txtPassword').send_keys("@WSX2wsx")
+        driver.find_element_by_id('txtUsername').send_keys("UserName")
+        driver.find_element_by_id('txtPassword').send_keys("@UserPass")
         driver.find_element_by_id('btnLogin').click()
         sleep(2)
         driver.find_element_by_id('txtFullName').send_keys(user_wanted)
