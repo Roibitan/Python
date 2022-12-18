@@ -10,7 +10,7 @@ print('Hellow World')
 import smtplib
 
 sender = 'Test@fromdomain.com'
-receivers = ['roibi@cellcom.co.il']
+receivers = ['XXXXXX@XXXXXXX.co.il']
 
 message = """From: From Person <from@fromdomain.com>
 To: To Person <to@todomain.com>
@@ -20,7 +20,7 @@ This is a test e-mail message.
 """
 
 try:
-   smtpObj = smtplib.SMTP('10.7.31.120')
+   smtpObj = smtplib.SMTP('XXXXX.XXXXX.XXXXX.XXXXX')
    smtpObj.sendmail(sender, receivers, message)
    print ("Successfully sent email")
 except SMTPException:
