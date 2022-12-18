@@ -13,15 +13,15 @@ import subprocess
 
 
 my_dict = {
-    "eaiws1": {"VAL": "", 'Address': "eaiws1.corp.co.il", "port": 80},
-    "eaiws2": {"VAL": "", 'Address': "eaiws2.corp.co.il", "port": 80},
-    "mqsapams": {"VAL": "", 'Address': "mqsapams.corp.co.il", "port": 3200},
-    "BT10PRDAPP1": {"VAL": "", 'Address': "BT10PRDAPP1.corp.co.il", "port": 4500},
-    "sap6dev": {"VAL": "", 'Address': "sap6dev.dev.corp.co.il", "port": 3242},
-    "saptstci": {"VAL": "", 'Address': "saptstci.dev.corp.co.il", "port": 3200},
-    "OSBQA1": {"VAL": "", 'Address': "OSBQA1.corp.co.il", "port": 7005},
-    "OSBINT1": {"VAL": "", 'Address': "OSBINT1.corp.co.il", "port": 7005},
-    "bwprd03": {"VAL": "", 'Address': "bwprd03.corp.co.il", "port": 50000},
+    "eaiws1": {"VAL": "", 'Address': "XXXXXXX.corp.co.il", "port": 80},
+    "eaiws2": {"VAL": "", 'Address': "XXXXXXX.corp.co.il", "port": 80},
+    "mqsapams": {"VAL": "", 'Address': "XXXXXXX.corp.co.il", "port": 3200},
+    "BT10PRDAPP1": {"VAL": "", 'Address': "XXXXXXX.corp.co.il", "port": 4500},
+    "sap6dev": {"VAL": "", 'Address': "XXXXXXX.dev.corp.co.il", "port": 3242},
+    "saptstci": {"VAL": "", 'Address': "XXXXXXX.dev.corp.co.il", "port": 3200},
+    "OSBQA1": {"VAL": "", 'Address': "XXXXXXX.corp.co.il", "port": 7005},
+    "OSBINT1": {"VAL": "", 'Address': "XXXXXXX.corp.co.il", "port": 7005},
+    "bwprd03": {"VAL": "", 'Address': "XXXXXXX.corp.co.il", "port": 50000},
 }
 
 
