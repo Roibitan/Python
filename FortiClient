@@ -6,16 +6,16 @@ import urllib3
 
 urllib3.disable_warnings()
 
-login_url_ukraine = 'https://194.183.167.105/logincheck'
+login_url_ukraine = 'https://XXXX.XXXX.XXXX.XXXX/logincheck'
 session = requests.session()
 aspcookie = session.cookies
 
 ssl_ukraine = 'https://194.183.167.105/api/v2/monitor/vpn/ssl?vdom=root'
 
 
-r_ukraine = session.post(login_url_ukraine,data='username=Roib&secretkey=11111111', verify = False)
+r_ukraine = session.post(login_url_ukraine,data='username=XXXX&secretkey=XXXX', verify = False)
 
-r3 = session.get(ssl_ukraine,data='username=Roib&secretkey=11111111', verify = False)
+r3 = session.get(ssl_ukraine,data='username=XXXX&secretkey=XXXX', verify = False)
 
 print(r3.text)
 
@@ -48,7 +48,7 @@ C:\Users\roib\PycharmProjects\FortigateProject\venv\Scripts\python.exe "C:/Users
     {
       "index":0,
       "user_name":"RomanR",
-      "remote_host":"185.11.82.75",
+      "remote_host":"XXXX.XXXX.XXXX.XXXX",
       "last_login_time":"Thu Nov 05 08:38:47 2020",
       "last_login_timestamp":1604558327,
       "subsessions":[
@@ -69,7 +69,7 @@ C:\Users\roib\PycharmProjects\FortigateProject\venv\Scripts\python.exe "C:/Users
     {
       "index":1,
       "user_name":"andriik",
-      "remote_host":"109.197.220.143",
+      "remote_host":"XXXX.XXXX.XXXX.XXXX",
       "last_login_time":"Thu Nov 05 07:25:02 2020",
       "last_login_timestamp":1604553902,
       "subsessions":[
@@ -85,7 +85,7 @@ C:\Users\roib\PycharmProjects\FortigateProject\venv\Scripts\python.exe "C:/Users
         }
       ],
       "subsession_type":"Unknown",
-      "subsession_desc":"aip:10.250.134.2"
+      "subsession_desc":"aip:XXXX.XXXX.XXXX.XXXX"
     },
     {
       "index":2,
