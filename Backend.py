@@ -24,8 +24,8 @@ def disable_user(user_wanted, url):
     driver.set_window_size(1920, 1080)
     try:
         driver.get('https://' + url + '/Operators/OperatorsManagement.aspx')
-        driver.find_element_by_id('txtUsername').send_keys("roib")
-        driver.find_element_by_id('txtPassword').send_keys("Rr123123!")
+        driver.find_element_by_id('txtUsername').send_keys("UserName")
+        driver.find_element_by_id('txtPassword').send_keys("UserPass!")
         driver.find_element_by_id('btnLogin').click()
         sleep(2)
         driver.find_element_by_id('rdbStatus_2').click()
