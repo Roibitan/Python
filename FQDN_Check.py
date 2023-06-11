@@ -1,9 +1,9 @@
 from tkinter import *
 import time
 import subprocess
+import requests
 
-
-
+''''''
 def click_me():
     Domains = [".domain.1", ".domain.2", ".domain.3", ".domain.4", ".domain.5",
                ".domain.6", ".domain.7", ".domain.8",
