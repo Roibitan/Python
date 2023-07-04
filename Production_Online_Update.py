@@ -8,15 +8,15 @@ import glob
 from typing import List, Tuple, Any
 
 # insert Values
-PROD = "\\\\ctxaa01\\amdocs\\AmdocsGui\\Prod"
-PROD_CURRENT = "\\\\ctxaa01\\amdocs\\AmdocsGui\\Prod.current\\"
-PROD_NEW = "\\\\ctxaa01\\amdocs\\AmdocsGui\\Prod.new"
-BackUP = "\\\\isiloncorp1\\archive\\cm_backup\\Online\\BackupProd "
-Products_From_Build = "\\\\isiloncorp1\\archive\\cm_backup\\Online\\BackupBuild"
-BackupBuild_before_Prod = "\\\\isiloncorp1\\archive\\cm_backup\\Online\\BackupBuild_before_Prod\\"
+PROD = "\\\\XXXXXX\\XXXXXX\\XXXXXX\\XXXXXX"
+PROD_CURRENT = "\\\\XXXXXX\\XXXXXX\\XXXXXX\\XXXXXX\\"
+PROD_NEW = "\\\\XXXXXX\\XXXXXX\\XXXXXX\\XXXXXX"
+BackUP = "\\\\XXXXXX\\XXXXXX\\XXXXXX\\XXXXXX\\XXXXXX "
+Products_From_Build = "\\\\XXXXXX\\XXXXXX\\XXXXXX\\XXXXXX\\XXXXXX"
+BackupBuild_before_Prod = "\\\\XXXXXX\\XXXXXX\\XXXXXX\\XXXXXX\\XXXXXX\\"
 Date = datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
 Date = Date.split("_")
-Copy_Sources = "\\\\celcm05\\D$\\Amdocs\\Online\\"
+Copy_Sources = "\\\\XXXXXX\\XXXXXX\\XXXXXX\\XXXXXX\\"
 
 
 
@@ -176,7 +176,7 @@ print('''
 ###############
 ''')
 print("*Backup Prod.current   *   ")
-BackupProd = "\\\\isiloncorp1\\archive\\cm_backup\\Online\\BackupProd\\"
+BackupProd = "\\\\XXXXXX\\XXXXXX\\XXXXXX\\XXXXXX\\XXXXXX\\"
 MkdirPath = BackupProd + "Prod_2012_" + Date[0]
 print("*Creating Backup Folder on ", MkdirPath, "   *   ")
 #os.mkdir(MkdirPaths)
@@ -233,15 +233,15 @@ The next section you need to do menuely:
 
 7.	Check ini files – in case of a change
 You can verify that there are no modified ini files in the following way:
-7.1. Connect to celcm05 as tfsservice and open Visual Studio. 
-Choose AmdocsOnline_PROD_tfs-prod_celcm05_tfsservice workspace (This workspace's local folder is D:\PROD_Online).
+7.1. Connect to XXXXXX as tfsservice and open Visual Studio. 
+Choose AmdocsOnline_PROD_tfs-prod_XXXXXX_tfsservice workspace (This workspace's local folder is D:\PvvvROD_Online).
 In the current version's branch go to Sources/ini/prod/ini and verify that all the files in the workspace are latest (Latest = Yes).
 If there are files that are not latest, you need to ask the developers.
 If the files should be in Prod, do the following steps:
 7.1.1 Get the specified ini files from Sources/ini/prod/ini.
-7.1.2 Copy the files to \\ctxaa01\amdocs\amdocsgui\Prod.new\Ini
-7.1.3	Compare the folders  \\ctxaa01\amdocs\amdocsgui\Prod\Ini
-And \\ctxaa01\amdocs\amdocsgui\Prod.new\Ini
+7.1.2 Copy the files to \\XXXXXX\XXXXXX\XXXXXX\XXXXXX\Ini
+7.1.3	Compare the folders  \\XXXXXX\XXXXXX\XXXXXX\XXXXXX\Ini
+And \\XXXXXX\XXXXXX\XXXXXX\XXXXXX\Ini
 Check that the only differences between files were verified with the developer.
 If not notify relevant developers.
 Choose(return back) Work space  : AmdocsOnline_tfs-prod_celcm05_tfsservice
@@ -263,7 +263,7 @@ print('''
 ''')
 
 print('We must be notified (from the team leader) with the specific applications/ files that need to be distributed to production. ')
-storage = '\\\\ctxaa01\\Amdocs\\amdocsgui\\Testing\\'
+storage = '\\\\XXXXXX\\XXXXXX\\XXXXXX\\XXXXXX\\'
 itpet = "itpet"+Version_Number
 itpet_bin = storage+itpet
 itpet_bin_Dosview = storage+itpet
@@ -336,7 +336,7 @@ print('''
 
 
 # Provide the network path you want to search
-win_ini_path = r'\\ctxaa01\Amdocs\amdocsgui\Prod.new\Bin32'
+win_ini_path = r'\\XXXXXX\XXXXXX\XXXXXX\XXXXXX\XXXXXX'
 
 # Call the function to count "win.ini" files
 win_ini_count = count_win_ini_files(win_ini_path)
@@ -367,16 +367,16 @@ print('''
 
 print('Compare All Four csmflds locations, In case of mismatch ,notify the developers!!! ')
 print("You need to check what is the lest unix storage and write the folder name in the answer")
-storage_path = '\\\\itpet1\\AMD\\TST\\storage'
+storage_path = '\\\\XXXXXX\\XXXXXX\\XXXXXX\\XXXXXX'
 os.startfile(storage_path)
 storage_num = input()
 
 
 
 # Provide the two network paths you want to compare
-csmflds1 = r'"\\ctxaa01\Amdocs\amdocsgui\Prod.new\Bin32\"'
-csmflds2 = "\\\\itpet1\\AMD\\TST\\storage\\"+storage_num+"\\common_lib\\"
-csmflds3 = "\\\\itpet1\\AMD\\TST\\storage\\"+storage_num+"\\lib"
+csmflds1 = r'"\\XXXXXX\XXXXXX\XXXXXX\XXXXXX\XXXXXX\"'
+csmflds2 = "\\\\XXXXXX\\XXXXXX\\XXXXXX\\XXXXXX\\"+storage_num+"\\common_lib\\"
+csmflds3 = "\\\\XXXXXX\\XXXXXX\\XXXXXX\\XXXXXX\\"+storage_num+"\\lib"
 
 
 
@@ -433,9 +433,9 @@ mismatched_files = compare_csmflds_files(csmflds1, csmflds3)
 
 
 # Provide the two network paths you want to compare
-intflds1 = r'"\\ctxaa01\Amdocs\amdocsgui\Prod.new\Bin32\"'
-intflds2 = "\\\\itpet1\\AMD\\TST\\torage\\"+storage_num+"\\common_lib\\"
-intflds3 = "\\\\itpet1\\AMD\\TST\\storage\\"+storage_num+"\\lib"
+intflds1 = r'"\\XXXXXX\XXXXXX\XXXXXX\XXXXXX\XXXXXX\"'
+intflds2 = "\\\\XXXXXX\\XXXXXX\\XXXXXX\\XXXXXX\\"+storage_num+"\\common_lib\\"
+intflds3 = "\\\\XXXXXX\\XXXXXX\\XXXXXX\\XXXXXX\\"+storage_num+"\\lib"
 
 
 mismatched_files2 = []
@@ -501,7 +501,7 @@ print('''
 
 
 print("Update version.txt file with the details of version update ")
-Version_txt = r'\\ctxaa01\amdocs\AmdocsGui\Prod.new\Bin32\version.txt'
+Version_txt = r'\\XXXXXX\XXXXXX\XXXXXX\XXXXXX\XXXXXX\version.txt'
 os.startfile(Version_txt)
 
 
@@ -548,7 +548,7 @@ Subject:	Online files for production - Citrix 2012
 
 היי,
 הפצת מחסנים מוכנה ב Online Citrix
-\\ctxaa01\amdocs\amdocsgui\Prod.new
+\\XXXXXX\XXXXXX\XXXXXX\XXXXXX
 נודה לביצוע ההפצה בCITRIX היום בלילה כאשר במערכות יהיו למטה
 
 """)
