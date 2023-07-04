@@ -112,7 +112,15 @@ def Copy_folders(Copy1, Copy2):
     shutil.copytree(Copy1, Copy2, dirs_exist_ok=True)
 
 
+def count_win_ini_files(win_ini_path):
+    count = 0
 
+    for root, dirs, files in os.walk(win_ini_path):
+        for file in files:
+            if file.lower() == "win.ini":
+                count += 1
+
+    return (count)
 
 
 
@@ -172,7 +180,8 @@ BackupProd = "\\\\isiloncorp1\\archive\\cm_backup\\Online\\BackupProd\\"
 MkdirPath = BackupProd + "Prod_2012_" + Date[0]
 print("*Creating Backup Folder on ", MkdirPath, "   *   ")
 #os.mkdir(MkdirPaths)
-MkdirPath_Prod_current = MkdirPath + 'Prod.current'
+MkdirPath_Prod_current = MkdirPath + '\Prod.current'
+print(MkdirPath_Prod_current)
 #os.mkdir(MkdirPath_Prod_currents)
 print("*Copy to BackUp *   ")
 #Copy_folders(PROD_CURRENT, MkdirPath_Prod_current)
@@ -296,8 +305,11 @@ print('''
 DOSVIEW1 = itpet_bin_Dosview + '\\DOSVIEW'
 DOSVIEW2 = PROD_NEW + '\\DOSVIEW'
 print("Comparing : ", DOSVIEW1, '*TO* ', DOSVIEW2)
+print("*** If a mismatch was found ,consult the developer whether to sync*** ")
 compare_folders(DOSVIEW1, DOSVIEW2)
 mismatch_files(DOSVIEW1, DOSVIEW2)
+
+
 
 
 # section 11
@@ -310,6 +322,7 @@ print('''
 SQLScripts1 = itpet_bin_Dosview + '\\SQLScripts'
 SQLScripts2 = PROD_NEW + '\\SQLScripts'
 print("Comparing : ", SQLScripts1, '*TO* ', SQLScripts2)
+print("*** If a mismatch was found ,consult the developer whether to sync*** ")
 compare_folders(SQLScripts1, SQLScripts2)
 mismatch_files(SQLScripts1, SQLScripts2)
 
@@ -321,8 +334,27 @@ print('''
 ################
 ''')
 
-# in the folder: "\\ctxaa01\Amdocs\amdocsgui\Prod.new\Bin32" need to find 15 files named: "win.ini" that contain inside the "Value_to_find" exsect
-Value_to_find = 'inipath=g:\\amdocs\\amdocsgui\\Prod\\ini'
+
+# Provide the network path you want to search
+win_ini_path = r'\\ctxaa01\Amdocs\amdocsgui\Prod.new\Bin32'
+
+# Call the function to count "win.ini" files
+win_ini_count = count_win_ini_files(win_ini_path)
+
+print(f"Number of 'win.ini' files found: {win_ini_count}")
+
+print(' You shold have 15 files.! if you have 15 continue with "Yes" if you dont stop with "No"')
+print("Do you have 15?")
+answer = input()
+if answer == "Yes":
+    print(" Continuing... ")
+    pass
+elif answer == "No":
+    print('Aborting. ')
+    sys.exit()
+else:
+    sys.exit()
+print(" ")
 
 
 # section 13
@@ -332,15 +364,146 @@ print('''
 ################
 ''')
 
-print("*13*    *    ")
 
+print('Compare All Four csmflds locations, In case of mismatch ,notify the developers!!! ')
+print("You need to check what is the lest unix storage and write the folder name in the answer")
+storage_path = '\\\\itpet1\\AMD\\TST\\storage'
+os.startfile(storage_path)
+storage_num = input()
+
+
+
+# Provide the two network paths you want to compare
+csmflds1 = r'"\\ctxaa01\Amdocs\amdocsgui\Prod.new\Bin32\"'
+csmflds2 = "\\\\itpet1\\AMD\\TST\\storage\\"+storage_num+"\\common_lib\\"
+csmflds3 = "\\\\itpet1\\AMD\\TST\\storage\\"+storage_num+"\\lib"
+
+
+
+mismatched_files = []
+def compare_csmflds_files(csmflds1, csmflds2):
+    mismatched_files = []
+
+    for root, dirs, files in os.walk(csmflds1):
+        for file in files:
+            if file.lower() == "csmflds":
+                file_csmflds1 = os.path.join(root, file)
+                file_csmflds2 = os.path.join(csmflds2, root.lstrip('\\'), file)
+
+                if os.path.isfile(file_csmflds2):
+                    with open(file_csmflds1, 'r') as f1, open(file_csmflds2, 'r') as f2:
+                        content1 = f1.read().strip().lower()
+                        content2 = f2.read().strip().lower()
+
+                        if content1 != content2:
+                            mismatched_files.append(file_csmflds1)
+
+    return mismatched_files
+
+
+
+
+if len(mismatched_files) > 0:
+    print("Mismatched 'csmflds' files found:")
+    for file in mismatched_files:
+        print(file)
+        print('To continue write "Yes" to Abort write "No"')
+        answer = input()
+        if answer == "Yes":
+            pass
+        else:
+            sys.exit()
+else:
+    print("No mismatched 'csmflds' files found.")
+    print('To continue write "Yes" to Abort write "No"')
+    answer = input()
+    if answer == "Yes":
+        pass
+    else:
+        sys.exit()
+
+
+
+
+
+# Call the function to compare "csmflds" files
+mismatched_files = compare_csmflds_files(csmflds1, csmflds2)
+mismatched_files = compare_csmflds_files(csmflds1, csmflds3)
+
+
+
+# Provide the two network paths you want to compare
+intflds1 = r'"\\ctxaa01\Amdocs\amdocsgui\Prod.new\Bin32\"'
+intflds2 = "\\\\itpet1\\AMD\\TST\\torage\\"+storage_num+"\\common_lib\\"
+intflds3 = "\\\\itpet1\\AMD\\TST\\storage\\"+storage_num+"\\lib"
+
+
+mismatched_files2 = []
+def compare_intflds_files(intflds1, intflds2):
+    mismatched_files2 = []
+
+    for root, dirs, files in os.walk(intflds1):
+        for file in files:
+            if file.lower() == "intflds":
+                file_intflds1 = os.path.join(root, file)
+                file_intflds2 = os.path.join(intflds2, root.lstrip('\\'), file)
+
+                if os.path.isfile(file_intflds2):
+                    with open(file_intflds1, 'r') as f1, open(file_intflds2, 'r') as f2:
+                        content1 = f1.read().strip().lower()
+                        content2 = f2.read().strip().lower()
+
+                        if content1 != content2:
+                            mismatched_files2.append(file_intflds1)
+
+    return mismatched_files2
+
+
+
+
+if len(mismatched_files2) > 0:
+    print("Mismatched 'intflds' files found:")
+    for file in mismatched_files2:
+        print(file)
+        print('To continue write "Yes" to Abort write "No"')
+        answer = input()
+        if answer == "Yes":
+            pass
+        else:
+            sys.exit()
+else:
+    print("No mismatched 'intflds' files found.")
+    print('To continue write "Yes" to Abort write "No"')
+    answer = input()
+    if answer == "Yes":
+        pass
+    else:
+        sys.exit()
+
+
+
+
+
+# Call the function to compare "csmflds" files
+mismatched_files2 = compare_intflds_files(intflds1, intflds2)
+mismatched_files2 = compare_intflds_files(intflds1, intflds3)
 
 
 print('''
+
+
+
+
 ################
 # *Section 14* #
 ################
 ''')
+
+
+print("Update version.txt file with the details of version update ")
+Version_txt = r'\\ctxaa01\amdocs\AmdocsGui\Prod.new\Bin32\version.txt'
+os.startfile(Version_txt)
+
 
 
 print('''
@@ -349,12 +512,21 @@ print('''
 ################
 ''')
 
+print("   Compare Prod & Prod.new directories and make sure the only differences are those that should be upgraded.")
+compare_folders(PROD, PROD_NEW)
+mismatch_files(PROD, PROD_NEW)
+
+
 
 print('''
 ################
 # *Section 16* #
 ################
 ''')
+
+print("   Backup: Copy",  PROD_NEW, "directory to: ", MkdirPath)
+#MkdirPath_Prod = MkdirPath + "\Prod.new"
+#Copy_folders(PROD_NEW, MkdirPath_Prod)
 
 print('''
 ################
@@ -363,3 +535,45 @@ print('''
 ''')
 
 
+
+print("""
+
+
+17	Notify ORG-TECH-SYSTEM NT TEAM ORG-TECH-SYSTEMNTTEAM@CELLCOM.CO.IL:
+
+email: 	ORG-TECH-SYSTEM NT TEAM ORG-TECH-SYSTEMNTTEAM@CELLCOM.CO.IL
+CC: 	Amdocs_cm; TECH-BILLING TIFUL TECH-BILLING-TIFUL@cellcom.co.il
+Subject:	Online files for production - Citrix 2012
+
+
+היי,
+הפצת מחסנים מוכנה ב Online Citrix
+\\ctxaa01\amdocs\amdocsgui\Prod.new
+נודה לביצוע ההפצה בCITRIX היום בלילה כאשר במערכות יהיו למטה
+
+""")
+
+
+print('   Done? Continue? Yes or No')
+Continue = input()
+if Continue == 'Yes':
+    print('   Continuing...')
+    pass
+elif Continue == 'No':
+    print('Aborted')
+    sys.exit()
+
+
+
+
+
+
+print("""
+#####################################################
+#####################################################
+#####################################################
+         Done, until the next time ;)
+#####################################################
+#####################################################
+#####################################################
+""")
