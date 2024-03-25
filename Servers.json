@@ -1,0 +1,232 @@
+{
+	"servers": [
+		{
+				"server_name": "XXXXXXXX",
+				"FQDN": "XXXXXXXX.XXX.XXXX.XXXX.XXX",
+				"OS": "Windows",
+				"Project": "XXXXXXX",
+				"Env": "QA",
+				"Port": "9080"
+		},
+		{
+				"server_name": "XXXXXXXX",
+				"FQDN": "XXXXXXXX.XXX.XXXX.XXXX.XXX",
+				"OS": "Linux",
+				"Project": "XXXXXXX",
+				"Env": "DEV",
+				"Port": "7005"
+		},
+		{
+				"server_name": "XXXXXXXX",
+				"FQDN": "XXXXXXXX.XXX.XXXX.XXXX.XXX",
+				"OS": "Linux",
+				"Project": "XXXXXXX",
+				"Env": "DEV",
+				"Port": "7005"
+		},
+		{
+				"server_name": "XXXXXXXX",
+				"FQDN": "XXXXXXXX.XXX.XXXX.XXXX.XXX",
+				"OS": "Linux",
+				"Project": "XXXXXXX",
+				"Env": "QA",
+				"Port": "7005"
+		},
+		{
+				"server_name": "XXXXXXXX",
+				"FQDN": "XXXXXXXX.XXX.XXXX.XXXX.XXX",
+				"OS": "Linux",
+				"Project": "XXXXXXX",
+				"Env": "QA",
+				"Port": "7005"
+		},
+		{
+				"server_name": "XXXXXXXX",
+				"FQDN": "XXXXXXXX.XXX.XXXX.XXXX.XXX",
+				"OS": "Linux",
+				"Project": "XXXXXXX",
+				"Env": "QA",
+				"Port": "7005"
+		},
+		{
+				"server_name": "XXXXXXXX",
+				"FQDN": "XXXXXXXX.XXX.XXXX.XXXX.XXX",
+				"OS": "Linux",
+				"Project": "XXXXXXX",
+				"Env": "PROD",
+				"Port": "7005"
+		},
+		{
+				"server_name": "XXXXXXXX",
+				"FQDN": "XXXXXXXX.XXX.XXXX.XXXX.XXX",
+				"OS": "Linux",
+				"Project": "XXXXXXX",
+				"Env": "PROD",
+				"Port": "7005"
+		},
+		{
+				"server_name": "XXXXXXXX",
+				"FQDN": "XXXXXXXX.XXX.XXXX.XXXX.XXX",
+				"OS": "Linux",
+				"Project": "XXXXXXX",
+				"Env": "PROD",
+				"Port": "7005"
+		},
+		{
+				"server_name": "XXXXXXXX",
+				"FQDN": "XXXXXXXX.XXX.XXXX.XXXX.XXX",
+				"OS": "Linux",
+				"Project": "XXXXXXX",
+				"Env": "PROD",
+				"Port": "7005"
+		},
+		{
+				"server_name": "XXXXXXXX",
+				"FQDN": "XXXXXXXX.XXX.XXXX.XXXX.XXX",
+				"OS": "Linux",
+				"Project": "XXXXXXX",
+				"Env": "QALIKE",
+				"Port": "7005"
+		},
+		{
+				"server_name": "XXXXXXXX",
+				"FQDN": "XXXXXXXX.XXX.XXXX.XXXX.XXX",
+				"OS": "Linux",
+				"Project": "XXXXXXX",
+				"Env": "QALIKE",
+				"Port": "7005"
+		},
+		{
+				"server_name": "XXXXXXXX",
+				"FQDN": "XXXXXXXX.XXX.XXXX.XXXX.XXX",
+				"OS": "Linux",
+				"Project": "XXXXXXX",
+				"Env": "QALIKE",
+				"Port": "7005"
+		},
+		{
+				"server_name": "XXXXXXXX",
+				"FQDN": "XXXXXXXX.XXX.XXXX.XXXX.XXX",
+				"OS": "Windows",
+				"Project": "XXXXXXX",
+				"Env": "PROD",
+				"Port": "9080"
+		},
+		{
+				"server_name": "XXXXXXXX",
+				"FQDN": "XXXXXXXX.XXX.XXXX.XXXX.XXX",
+				"OS": "Windows",
+				"Project": "XXXXXXX",
+				"Env": "PROD",
+				"Port": "9080"
+		},
+		{
+				"server_name": "XXXXXXXX",
+				"FQDN": "XXXXXXXX.XXX.XXXX.XXXX.XXX",
+				"OS": "Linux",
+				"Project": "XXXXXXX",
+				"Env": "QA",
+				"Port": "1521"
+		},
+		{
+				"server_name": "XXXXXXXX",
+				"FQDN": "XXXXXXXX.XXX.XXXX.XXXX.XXX",
+				"OS": "Linux",
+				"Project": "XXXXXXX",
+				"Env": "QA",
+				"Port": "22"
+		},
+		{
+				"server_name": "XXXXXXXX",
+				"FQDN": "XXXXXXXX.XXX.XXXX.XXXX.XXX",
+				"OS": "Linux",
+				"Project": "XXXXXXX",
+				"Env": "TRN",
+				"Port": "7005"
+		},
+		{
+				"server_name": "XXXXXXXX",
+				"FQDN": "XXXXXXXX.XXX.XXXX.XXXX.XXX",
+				"OS": "Linux",
+				"Project": "XXXXXXX",
+				"Env": "QA",
+				"Port": "9092"
+		},
+		{
+				"server_name": "XXXXXXXX",
+				"FQDN": "XXXXXXXX.XXX.XXXX.XXXX.XXX",
+				"OS": "Windows",
+				"Project": "XXXXXXX",
+				"Env": "QA",
+				"Port": "8050"
+		},
+		{
+				"server_name": "XXXXXXXX",
+				"FQDN": "XXXXXXXX.XXX.XXXX.XXXX.XXX",
+				"OS": "Windows",
+				"Project": "XXXXXXX",
+				"Env": "QA",
+				"Port": "9080"
+		},
+		{
+				"server_name": "XXXXXXXX",
+				"FQDN": "XXXXXXXX.XXX.XXXX.XXXX.XXX",
+				"OS": "Windows",
+				"Project": "XXXXXXX",
+				"Env": "QA",
+				"Port": "9092"
+		},
+		{
+				"server_name": "XXXXXXXX",
+				"FQDN": "XXXXXXXX.XXX.XXXX.XXXX.XXX",
+				"OS": "Linux",
+				"Project": "XXXXXXX",
+				"Env": "QA",
+				"Port": "8090"
+		},
+		{
+				"server_name": "XXXXXXXX",
+				"FQDN": "XXXXXXXX.XXX.XXXX.XXXX.XXX",
+				"OS": "Linux",
+				"Project": "XXXXXXX",
+				"Env": "QA",
+				"Port": "8090"
+		},
+		{
+				"server_name": "XXXXXXXX",
+				"FQDN": "XXXXXXXX.XXX.XXXX.XXXX.XXX",
+				"OS": "Windows",
+				"Project": "XXXXXXX",
+				"Env": "PROD",
+				"Port": "3200"
+		},
+		{
+				"server_name": "XXXXXXXX",
+				"FQDN": "XXXXXXXX.XXX.XXXX.XXXX.XXX",
+				"OS": "Unix",
+				"Env": "PROD",
+				"Project": "XXXXXXXX"
+		},
+		{
+				"server_name": "XXXXXXXX",
+				"FQDN": "XXXXXXXX.XXX.XXXX.XXXX.XXX",
+				"OS": "Unix",
+				"Env": "PROD",
+				"Project": "XXXXXXXX"
+		},
+		{
+				"server_name": "XXXXXXXX",
+				"FQDN": "XXXXXXXX.XXX.XXXX.XXXX.XXX",
+				"OS": "Unix",
+				"Env": "PROD",
+				"Project": "XXXXX"
+		},
+		{
+				"server_name": "XXXXXXXX",
+				"FQDN": "XXXXXXXX.XXX.XXXX.XXXX.XXX",
+				"OS": "Unix",
+				"Env": "PROD",
+				"Project": "XXXXX"
+		}
+	]
+}

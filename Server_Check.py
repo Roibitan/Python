@@ -23,7 +23,7 @@ project = os.environ['Project']
 env = os.environ['Env']
 username = os.environ['username']
 password = os.environ['password']
-domain = Domain
+domain = r'XXXXXXXX_nt'
 
 
 env = env.split(',')
@@ -98,7 +98,7 @@ for environment in env:
                             result_mem = result_mem.strip()
                             result_mem = int(float(result_mem))
                             if result_mem >= 90:
-                                print("##[error]WARNING! MEMORY IS {}%".format(result_mem))
+                                print("##[warning]WARNING! MEMORY IS {}%".format(result_mem))
                             # print(Fore.RED + 'WARNING! MEMORY IS {}%'.format(result_mem))
                             else:
                                 print("##[section]MEMORY OK {}%".format(result_mem))
@@ -155,7 +155,7 @@ for environment in env:
                                 # print(disk_per)
                                 if disk_per >= 90.0:
                                     # disk_per = math.trunc(disk_per)
-                                    print("##[error]disk {} is almost FULL {}%".format(disk_name, disk_per))
+                                    print("##[warning]disk {} is almost FULL {}%".format(disk_name, disk_per))
                                 # print(Fore.YELLOW + 'disk {} is almost FULL'.format(disk_name))
                                 # print("")
                                 else:
@@ -171,8 +171,8 @@ for environment in env:
                     ##################
                     elif r['OS'] == "Unix":
                         port = '22'
-                        username = 'Username'
-                        password = 'Password'
+                        username = 'XXXXXXXX'
+                        password = 'XXXXXXXX'
                         server_name = r['server_name']
                         FQDN = (r['FQDN'])
                         print('##[command] Server Name:' + server_name)
@@ -187,7 +187,7 @@ for environment in env:
                         s.load_system_host_keys()
                         s.set_missing_host_key_policy(paramiko.AutoAddPolicy())
                         try:
-                            s.connect(server_name, port, username, password)
+                            s.connect(FQDN, port, username, password)
                         except:
                             print("##[error]REOMOTE CONNECT TO MACHINE {} FAILED".format(server_name))
                         # print(Fore.RED + 'REOMOTE CONNECT TO MACHINE {} FAILED'.format(server_name))
@@ -267,8 +267,8 @@ for environment in env:
                     ##################
                     else:
                         port = '22'
-                        username = 'Username'
-                        password = 'Password'
+                        username = 'XXXXXXXX'
+                        password = 'XXXXXXXX'
                         server_name = r['server_name']
                         FQDN = (r['FQDN'])
                         print('##[command] Server Name:' + server_name)
@@ -280,8 +280,8 @@ for environment in env:
                             print('##[error]Ping is Down to ' + server_name)
 
                         ###Keep Alive Check
-                        my_list = ["k2viewv623qa01", "k2viewv623qa02", "k2viewv623qa03", "k2viewv623prod01",
-                                   "k2viewv623prod02", "k2viewv623prod03"]
+                        my_list = ["XXXXXXXXXXX", "XXXXXXXXXXX", "XXXXXXXXXXX", "XXXXXXXXXXX",
+                                   "XXXXXXXXXXX", "XXXXXXXXXXX"]
                         for serveralive in my_list:
                             if serveralive == server_name:
                                 try:
@@ -289,7 +289,7 @@ for environment in env:
                                     s.load_system_host_keys()
                                     s.set_missing_host_key_policy(paramiko.AutoAddPolicy())
                                     try:
-                                        s.connect(server_name, port, username, password)
+                                        s.connect(FQDN, port, username, password)
                                         stdin, stdout, stderr = s.exec_command('/home/XXXXXXXX/tfs_keep_alive.py')
                                         # stdin, stdout, stderr = s.exec_command('/usr/bin/sudo -S -u k2view /usr/local/k2view/tfs_keep_alive.py')
                                         "stderr: ", stderr.readlines()
@@ -305,29 +305,29 @@ for environment in env:
                             pass
                         # username and password
                         port = '22'
-                        username = 'Username'
-                        password = 'Password'
+                        username = 'XXXXXXXX'
+                        password = 'XXXXXXXX'
 
                         # connect to the server
                         s = paramiko.SSHClient()
                         s.load_system_host_keys()
                         s.set_missing_host_key_policy(paramiko.AutoAddPolicy())
                         try:
-                            s.connect(server_name, port, username, password)
+                            s.connect(FQDN, port, username, password)
                         except:
                             print("##[error]REOMOTE CONNECT TO MACHINE {} FAILED".format(server_name))
                         # print(Fore.RED + 'REOMOTE CONNECT TO MACHINE {} FAILED'.format(server_name))
                         else:
                             ####memory check
-                            command = "echo $[$(free | head -2| tail -1 | awk '{print $4}')] $[$(free | head -2| tail -1 | awk '{print $2}')]"
+                            command = "echo $[$(free | head -2| tail -1 | awk '{print $3}')] $[$(free | head -2| tail -1 | awk '{print $2}')]"
                             (stdin, stdout, stderr) = s.exec_command(command)
                             for mem_usage in stdout.readlines():
                                 a = mem_usage.split(" ")
-                                free_mem = a[0]
+                                used_mem = a[0]
                                 total_mem = a[1]
-                                mem_usage = int(free_mem) / int(total_mem)
+                                mem_usage = int(used_mem) / int(total_mem)
                                 mem_usage = mem_usage * 100
-                                # print(mem_usage)
+                                mem_usage = round(mem_usage, 1)
                                 if mem_usage >= 90:
                                     print("##[warning]WARNING! MEMORY IS {}%".format(mem_usage))
                                 # print(Fore.RED + 'WARNING! MEMORY IS {}%'.format(result_mem))
@@ -335,38 +335,73 @@ for environment in env:
                                     print("##[section]MEMORY OK {}% ".format(mem_usage))
                                 # print(Fore.GREEN + 'MEMORY OK')
 
-                            command = "echo $[100-$(vmstat 1 2 | tail -1 | awk '{print $15}')]"
+                            ###CPU CHECK###
+                            command: str = "echo $[100-$(vmstat 1 2 | tail -1 | awk '{print $15}')]"
                             (stdin, stdout, stderr) = s.exec_command(command)
                             for cpu_usage in stdout.readlines():
                                 cpu_usage = int(float(cpu_usage))
                                 if cpu_usage >= 90:
                                     print("##[warning]WARNING! CPU IS {}%".format(cpu_usage))
-                                    print("")
                                 # print(Fore.RED + 'WARNING! CPU IS {}%'.format(result_cpu))
                                 else:
                                     print("##[section]CPU OK {}%".format(cpu_usage))
-                                    print("")
                                 # print(Fore.GREEN + 'CPU OK')
 
                             ####disks check
-                            command = "df -h"
+                            command = "df -h /var "
                             (stdin, stdout, stderr) = s.exec_command(command)
-                            for fs_usage in stdout.readlines():
-                                # print(fs_usage.strip())
-                                # fs_usage = fs_usage.strip()
-                                # fs_usage = fs_usage.encode("utf-8")
-                                fs_usage = fs_usage.split()
-                                # print(fs_usage)
-                                fs_per = fs_usage[4]
-                                fs_per = fs_per[:-1]
-
-                                if fs_per != "Use":
-                                    fs_per = int(fs_per)
-                                    if fs_per >= 90:
-                                        fs_name = fs_usage[5]
-                                        print("##[warning]WARNING! {} is {}%".format(fs_name, fs_per))
-                                # else:
-                                # 	print("##[section]Disk {} is {}%".format(fs_name,fs_per))
-                                # print(Fore.RED + 'WARNING! {} is {}%'.format(fs_name,fs_per))
-                            # print(fs_usage)
+                            stdout = ("info: ", stdout.readlines())
+                            disk_per = str(stdout)
+                            disk_result = disk_per.split()
+                            disk_present = disk_result[13]
+                            try:
+                                disk1 = disk_present.split("%")
+                                disk2 = disk1[0]
+                                disk = float(disk2)
+                            except:
+                                disk1 = disk_present.split("G")
+                                disk2 = disk1[0]
+                                disk = float(disk2)
+                            if disk >= 90:
+                                print("##[warning]WARNING! Disk /var IS {}%".format(disk))
+                            else:
+                                print("##[section]Disk /var OK {}% ".format(disk))
+                            command = "df -h /usr"
+                            (stdin, stdout, stderr) = s.exec_command(command)
+                            stdout = ("info: ", stdout.readlines())
+                            disk_per = str(stdout)
+                            disk_result = disk_per.split()
+                            disk_present = disk_result[13]
+                            try:
+                                disk1 = disk_present.split("%")
+                                disk2 = disk1[0]
+                                disk = float(disk2)
+                            except:
+                                disk1 = disk_present.split("G")
+                                disk2 = disk1[0]
+                                disk = float(disk2)
+                            if disk >= 90:
+                                print("##[warning]WARNING! Disk /usr IS {}%".format(disk))
+                            else:
+                                print("##[section]Disk /usr OK {}% ".format(disk))
+                            command = "df -h /"
+                            (stdin, stdout, stderr) = s.exec_command(command)
+                            stdout = ("info: ", stdout.readlines())
+                            disk_per = str(stdout)
+                            disk_result = disk_per.split()
+                            disk_present = disk_result[13]
+                            try:
+                                disk1 = disk_present.split("%")
+                                disk2 = disk1[0]
+                                disk = float(disk2)
+                            except:
+                                disk1 = disk_present.split("G")
+                                disk2 = disk1[0]
+                                disk = float(disk2)
+                            if disk >= 90:
+                                print("##[warning]WARNING! Disk / IS {}%".format(disk))
+                                print(" ")
+                            else:
+                                print("##[section]Disk / OK {}% ".format(disk))
+                                print(" ")
                             s.close()
