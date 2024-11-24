@@ -1,0 +1,109 @@
+import os
+import subprocess
+import csv
+from time import sleep
+import requests
+import json
+from requests.auth import HTTPBasicAuth
+
+
+
+user = "XXXXXXXX@XXXXXXXX.XXXXXXXX.com"
+password = "XXXXXXXX"
+tenant = "XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX-XXXXXXXX"
+organization = "https://dev.azure.com/XXXXXXXX/"
+team_project = "XXXXXXXX"
+pat = "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
+org = "XXXXXXXX"
+
+
+
+def list_all_approvals(release_id):
+    url = f"https://vsrm.dev.azure.com/{org}/{team_project}/_apis/release/approvals?releaseIds={release_id}&api-version=7.1"
+    print(f"Requesting all approvals from URL: {url}")
+    response = requests.get(url, headers={"Content-Type": "application/json"}, auth=HTTPBasicAuth('', pat))
+    print(f"Response status code: {response.status_code}")
+    if response.status_code == 200:
+        approvals = response.json()["value"]
+        print("Approvals data:")
+        print(json.dumps(approvals, indent=2))
+        return approvals
+    else:
+        print(f"Failed to list approvals: {response.status_code}, {response.text}")
+        return []
+
+def approve_pending_approvals(approvals):
+    for approval in approvals:
+        approval_id = approval["id"]
+        url = f"https://vsrm.dev.azure.com/{org}/{team_project}/_apis/release/approvals/{approval_id}?api-version=7.1"
+        body = json.dumps({"status": "approved", "comments": "Approved by script"})
+        print(f"Approving approval ID: {approval_id} with URL: {url}")
+        response = requests.patch(url, headers={"Content-Type": "application/json"}, auth=HTTPBasicAuth('', pat), data=body)
+        print(f"Response status code: {response.status_code}")
+        if response.status_code == 200:
+            print(f"Approval {approval_id} approved successfully")
+        else:
+            print(f"Failed to approve approval {approval_id}: {response.status_code}, {response.text}")
+
+def check_stage_status(release_id, stage_id):
+    url = f"https://vsrm.dev.azure.com/{org}/{team_project}/_apis/release/releases/{release_id}/environments/{stage_id}?api-version=7.1"
+    print(f"Checking stage status with URL: {url}")
+    response = requests.get(url, headers={"Content-Type": "application/json"}, auth=HTTPBasicAuth('', pat))
+    print(f"Response status code: {response.status_code}")
+    if response.status_code == 200:
+        stage_info = response.json()
+        print(f"Stage status: {stage_info['status']}")
+        print(f"Conditions: {json.dumps(stage_info['conditions'], indent=2)}")
+        print(f"Deploy steps: {json.dumps(stage_info['deploySteps'], indent=2)}")
+        return stage_info
+    else:
+        print(f"Failed to check stage status: {response.status_code}, {response.text}")
+        return None
+
+# Full path to the Azure CLI executable
+az_path = r"C:\Program Files\Microsoft SDKs\Azure\CLI2\wbin\az.cmd"
+
+subprocess.run([az_path, "login", "-u", user, "-p", password, "-t", tenant, "--output", "none"])
+subprocess.run([az_path, "devops", "configure", "--defaults", f"organization={organization}", f"project={team_project}"])
+with open("C:/Temp/1111/Release_CMTeam.csv", mode='r') as file:
+    csv_reader = csv.DictReader(file)
+    for row in csv_reader:
+        release_name = row["Release_Name"]
+        release_id = row["Release_ID"]
+        print(f"Name: {release_name}, ID: {release_id}")
+
+        # Get stages
+        result = subprocess.run([az_path, "pipelines", "release", "show", "--id", release_id, "--query", "environments[].{id: id, name: name, Status: status}", "--output", "json"], capture_output=True, text=True)
+        stages = json.loads(result.stdout)
+
+        for stage in stages:
+            print("The Stage is:")
+            print(stage)
+            if stage["name"].lower() == "prod":
+                stage_id = stage["id"]
+                print("The Release ID is:")
+                print(release_id)
+
+                url = f"https://vsrm.dev.azure.com/{org}/{team_project}/_apis/release/releases/{release_id}/environments/{stage_id}?api-version=6.0-preview.6"
+                body = json.dumps({"status": "inProgress"})
+
+                response = requests.patch(url, headers={"Content-Type": "application/json"}, auth=HTTPBasicAuth('', pat), data=body)
+                if response.status_code == 200:
+                    print("Status updated successfully")
+                else:
+                    print(f"Failed to update status: {response.status_code}")
+
+        sleep(5)
+        approvals = list_all_approvals(release_id)
+        pending_approvals = [approval for approval in approvals if approval["status"] == "pending"]
+
+        if pending_approvals:
+            approve_pending_approvals(pending_approvals)
+        else:
+            print("No pending approvals found. Checking stage status and conditions.")
+            stage_info = check_stage_status(release_id, stage_id)
+            if stage_info and stage_info["status"] == "notStarted":
+                print("Attempting to update stage status to 'inProgress'.")
+                update_stage_status(release_id, stage_id, "inProgress")
+
+subprocess.run([az_path, "logout"])
